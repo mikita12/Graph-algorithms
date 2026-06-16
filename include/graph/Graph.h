@@ -3,7 +3,7 @@
 #include "Array.h"
 
 class Graph { // klasa abstrakcyjna
-protected: //dziedziczace musza miec dostep
+protected:    // dziedziczace musza miec dostep
   int vertexCount;
   int edgeCount;
 
@@ -13,9 +13,9 @@ public:
     edgeCount = 0;
   }
 
-  int numVer() { return vertexCount; }
+  int numVer() const { return vertexCount; }
 
-  int numEdge() { return edgeCount; }
+  int numEdge() const { return edgeCount; }
 
   virtual void addEdge(int from, int to, int weight) = 0;
   virtual ~Graph() = default;
@@ -35,14 +35,16 @@ public:
       : Graph(vertices), nodes(vertices) { // lista inicjalizacyjna
   }
 
-  ~AdjencList() { delete[] nodes; }
+  ~AdjencList() {}
 
   void addEdge(int from, int to, int weight) override {
     Edge toAdd;
     toAdd.to = to;
     toAdd.weight = weight;
-    nodes[from].push_back(toAdd)
+    nodes[from].push_back(toAdd);
+    edgeCount++;
   }
+  
 };
 
 class IncList : public Graph { // dziedziczy po graph
