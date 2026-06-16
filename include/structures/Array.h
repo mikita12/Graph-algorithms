@@ -1,8 +1,8 @@
+#pragma once
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
-
-#pragma once
 
 template <typename T> class Array {
 private:
@@ -17,44 +17,10 @@ public:
     data = (T *)malloc(sizeof(T) * capacity);
   }
 
-  Array(const Array<T> &other) {
-    capacity = other.capacity;
-    size = other.size;
+  Array() {
+    capacity = 4;
+    size = 0;
     data = (T *)malloc(sizeof(T) * capacity);
-    for (int i = 0; i < size; i++)
-      data[i] = other.data[i];
-  }
-
-  Array(Array<T> &&other) noexcept
-      : data(other.data), size(other.size), capacity(other.capacity) {
-    other.data = nullptr;
-    other.size = 0;
-    other.capacity = 0;
-  }
-
-  Array<T> &operator=(const Array<T> &other) {
-    if (this != &other) {
-      free(data);
-      capacity = other.capacity;
-      size = other.size;
-      data = (T *)malloc(sizeof(T) * capacity);
-      for (int i = 0; i < size; i++)
-        data[i] = other.data[i];
-    }
-    return *this;
-  }
-
-  Array<T> &operator=(Array<T> &&other) noexcept {
-    if (this != &other) {
-      free(data);
-      data = other.data;
-      size = other.size;
-      capacity = other.capacity;
-      other.data = nullptr;
-      other.size = 0;
-      other.capacity = 0;
-    }
-    return *this;
   }
 
   ~Array() { free(data); }
