@@ -44,7 +44,6 @@ public:
     nodes[from].push_back(toAdd);
     edgeCount++;
   }
-  
 };
 
 class IncList : public Graph { // dziedziczy po graph
