@@ -3,7 +3,7 @@
 #include "Array.h"
 
 class Graph { // klasa abstrakcyjna
-private:
+protected: //dziedziczace musza miec dostep
   int vertexCount;
   int edgeCount;
 
