@@ -12,7 +12,7 @@ private:
 
 public:
   Array(int cap) {
-    capacity = cap + 1; // Array<int> arr(0) problem
+    capacity = cap + 1;
     size = 0;
     data = (T *)malloc(sizeof(T) * capacity);
   }
@@ -27,14 +27,13 @@ public:
 
   void push_back(const T &value) {
     if (size >= capacity) {
-      capacity *= 2; // rip pamiec?
-      T *temp = (T *)realloc(data, capacity * sizeof(T));
-      if (temp != NULL) {
-        data = temp;
-      } else {
-        std::cout << "realloc failed\n"; // nie wiem tbh, not my problem
-        return;
+      capacity *= 2;
+      T *temp = (T *)malloc(sizeof(T) * capacity);
+      for (int i = 0; i < size; i++) {
+        temp[i] = data[i]; // kopiuje przez operator= a nie bitowo
       }
+      free(data);
+      data = temp;
     }
     data[size++] = value;
   }
