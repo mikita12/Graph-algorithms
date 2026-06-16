@@ -19,7 +19,7 @@ find_library(PARAM_LIB
 
 add_executable(projekt2 
     src/main.cpp
-    src/io/Loader.cpp
+    util/Loader.cpp
 )
 
 target_include_directories(projekt2 PRIVATE 
