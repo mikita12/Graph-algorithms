@@ -17,9 +17,17 @@ find_library(PARAM_LIB
 )
 
 
-add_executable(projekt2 src/main.cpp)
+add_executable(projekt2 
+    src/main.cpp
+    src/io/Loader.cpp
+)
 
-target_include_directories(projekt2 PRIVATE ${CMAKE_SOURCE_DIR}/lib)
+target_include_directories(projekt2 PRIVATE 
+    ${CMAKE_SOURCE_DIR}/lib
+    ${CMAKE_SOURCE_DIR}/include/graph
+    ${CMAKE_SOURCE_DIR}/include/structures
+    ${CMAKE_SOURCE_DIR}/util
+)
 
 target_link_libraries(projekt2 PRIVATE ${PARAM_LIB})
 
