@@ -1,24 +1,49 @@
-
+#pragma once
 
 #include "Array.h"
 
-#pragma once
+class Graph { // klasa abstrakcyjna
+private:
+  int vertexCount;
+  int edgeCount;
 
-class Graph {//klasa abstrakcyjna
 public:
-    virtual int numVer() const = 0;
-    virtual int numEdg() const = 0;
-    virtual void addEdge(int from,int to, int weight) =0;
-    virtual ~Graph() = default;
+  Graph(int vertices) {
+    vertexCount = vertices;
+    edgeCount = 0;
+  }
+
+  int numVer() { return vertexCount; }
+
+  int numEdge() { return edgeCount; }
+
+  virtual void addEdge(int from, int to, int weight) = 0;
+  virtual ~Graph() = default;
 };
 
-class AdjencList : public Graph{ //dziedziczy po graph
-public:
-    int numVer() const override{
-
-    }
+struct Edge {
+  int to;
+  int weight;
 };
 
-class IncList : public Graph{//dziedziczy po graph
+class AdjencList : public Graph { // dziedziczy po graph
+private:
+  Array<Array<Edge>> nodes;
 
+public:
+  AdjencList(int vertices)
+      : Graph(vertices), nodes(vertices) { // lista inicjalizacyjna
+  }
+
+  ~AdjencList() { delete[] nodes; }
+
+  void addEdge(int from, int to, int weight) override {
+    Edge toAdd;
+    toAdd.to = to;
+    toAdd.weight = weight;
+    nodes[from].push_back(toAdd)
+  }
+};
+
+class IncList : public Graph { // dziedziczy po graph
 };
