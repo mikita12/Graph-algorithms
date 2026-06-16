@@ -1,15 +1,20 @@
-#include "Parameters.h"
+#include "Graph.h"
+#include "Loader.h"
 #include <iostream>
 
-int main(int argc, char **argv) {
-  std::cout << "wersja lib: " << Parameters::getVersion() << "\n";
+void testLoader() {
+  std::cout << "=== Test Loader ===\n";
 
-  if (Parameters::readParameters(argc - 1, argv + 1) != 0) {//+1 bo bierze program jako argument
-    std::cerr << "blad parsowania argumentow \n";
-    return 1;
-  }
+  AdjencList g(4);
+  loader("../test.txt", g);
 
-  Parameters::printParameters();
+  std::cout << "Wierzcholki: " << g.numVer() << " (oczekiwane: 4)\n";
+  std::cout << "Krawedzie: " << g.numEdge() << " (oczekiwane: 6)\n";
 
+  g.print();
+}
+
+int main() {
+  testLoader();
   return 0;
 }
