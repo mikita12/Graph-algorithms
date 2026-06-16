@@ -4,7 +4,7 @@
 int main(int argc, char **argv) {
   std::cout << "wersja lib: " << Parameters::getVersion() << "\n";
 
-  if (Parameters::readParameters(argc - 1, argv + 1) != 0) {
+  if (Parameters::readParameters(argc - 1, argv + 1) != 0) {//+1 bo bierze program jako argument
     std::cerr << "blad parsowania argumentow \n";
     return 1;
   }
