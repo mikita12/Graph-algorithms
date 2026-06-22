@@ -38,6 +38,10 @@ public:
     data[size++] = value;
   }
 
+  void pop_back() {
+    if (size > 0) size--;
+  }
+
   int get_size() const { return size; }
 
   T &operator[](int index) { return data[index]; }
