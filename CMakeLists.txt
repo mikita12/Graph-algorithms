@@ -26,6 +26,7 @@ target_include_directories(projekt2 PRIVATE
     ${CMAKE_SOURCE_DIR}/lib
     ${CMAKE_SOURCE_DIR}/include/graph
     ${CMAKE_SOURCE_DIR}/include/structures
+    ${CMAKE_SOURCE_DIR}/include/algorithms
     ${CMAKE_SOURCE_DIR}/util
 )
 
