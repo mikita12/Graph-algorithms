@@ -1,20 +1,21 @@
 #include "Graph.h"
 #include "Loader.h"
+#include "Dijkstra.h"
 #include <iostream>
 
-void testLoader() {
-  std::cout << "=== Test Loader ===\n";
+void testDijkstra() {
+    std::cout << "=== Test Dijkstra ===\n";
 
-  AdjencList g(4);
-  loader("../test.txt", g);
+    AdjencList g(4);
+    loader("../test.txt", g);
+    g.print();
 
-  std::cout << "Wierzcholki: " << g.numVer() << " (oczekiwane: 4)\n";
-  std::cout << "Krawedzie: " << g.numEdge() << " (oczekiwane: 6)\n";
-
-  g.print();
+    std::cout << "\nNajkrotsza sciezka 0 -> 3:\n";
+    SpResult result = dijkstra(g, 0, 3);
+    result.print(0, 3);
 }
 
 int main() {
-  testLoader();
-  return 0;
+    testDijkstra();
+    return 0;
 }
