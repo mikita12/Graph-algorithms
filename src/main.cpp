@@ -1,21 +1,19 @@
-#include "Graph.h"
+#include "Prim.h"
 #include "Loader.h"
-#include "Dijkstra.h"
-#include <iostream>
 
-void testDijkstra() {
-    std::cout << "=== Test Dijkstra ===\n";
+void testPrim() {
+  std::cout << "=== Test Prim ===\n";
 
-    AdjencList g(4);
-    loader("../test.txt", g);
-    g.print();
+  AdjencList g(5);
+  loaderUndirected("../test_mst.txt", g);
+  g.print();
 
-    std::cout << "\nNajkrotsza sciezka 0 -> 3:\n";
-    SpResult result = dijkstra(g, 0, 3);
-    result.print(0, 3);
+  std::cout << "\n";
+  MstResult result = prim(g, 0);
+  result.print();
 }
 
 int main() {
-    testDijkstra();
-    return 0;
+  testPrim();
+  return 0;
 }

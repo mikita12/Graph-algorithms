@@ -72,7 +72,7 @@ SpResult dijkstra(G& graph, int start, int end) {
         if (u == end) break;
 
         // przegladamy sasiadow
-        const Array<Edge>& neighbors = graph.getNeighbors(u);
+        auto neighbors = graph.getNeighbors(u);
         for (int i = 0; i < neighbors.get_size(); i++) {
             int v = neighbors[i].to;
             int w = neighbors[i].weight;
